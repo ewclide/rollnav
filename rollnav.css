@@ -1,7 +1,7 @@
 .rollnav {
     position: relative;
 }
-.rollnav .content-wrapper {
+.rollnav .content-wrapper > div {
     padding: 10px;
     border: 1px solid #d6d6d6;
 }

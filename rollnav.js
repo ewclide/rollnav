@@ -59,7 +59,7 @@
         constructor(options)
         {
             this.parent = options.parent;
-            this.element = options.element;
+            this.element = $(document.createElement("div"));
             this.minHeight = 0;
             this.maxHeight = 0;
             this.button = false;
@@ -70,19 +70,16 @@
         {
             var settings = {
                 block : this,
-                speed : options.speed || this.element.attr("data-speed"),
-                opened : options.opened || this.element.attr("data-opened"),
-                class : options.buttonClass || this.element.attr("data-class"),
-                title : this.element.attr("data-title"),
-                autoClose : options.autoClose || this.element.attr("data-auto-close")
+                speed : options.speed || options.element.attr("data-speed"),
+                opened : options.opened || options.element.attr("data-opened"),
+                class : options.buttonClass || options.element.attr("data-class"),
+                title : options.element.attr("data-title"),
+                autoClose : options.autoClose || options.element.attr("data-auto-close")
             }
 
-            var wrapper = $(document.createElement("div"));
-                wrapper.addClass("content-wrapper");
-                wrapper.append(this.element.html());
-
-            this.element.empty();
-            this.element.append(wrapper);
+            this.element.addClass("content-wrapper");
+            options.element.after(this.element);
+            this.element.append(options.element);
 
             this.maxHeight = this.element.outerHeight();
 
