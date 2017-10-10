@@ -12,9 +12,6 @@
     width: 35px;
     height: 100%;
     margin: auto;
-    -webkit-transition: 0.25s;
-    -o-transition: 0.25s;
-    transition: 0.25s;
 }
 .rollnav .button.opened .label {
     transform: rotate(-90deg);

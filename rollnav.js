@@ -78,8 +78,14 @@
             }
 
             this.element.addClass("content-wrapper");
-            options.element.after(this.element);
+
+            var wrapper = $(document.createElement("div"));
+                wrapper.addClass("block-wrapper");
+
+            options.element.after(wrapper);
             this.element.append(options.element);
+            wrapper.append(this.element);
+
 
             this.maxHeight = this.element.outerHeight();
 
