@@ -7,7 +7,7 @@
         {
             this.element = $(document.createElement("a"));
             this.collapsed = !options.opened || false;
-            this.class = "button " + options.class || "button";
+            this.class = options.class ? "button " + options.class : "button";
             this.speed = options.speed || 250;
             this.block = options.block;
             this.title = options.title || "button";
@@ -37,12 +37,12 @@
             this.collapsed = true;
         }
 
-        open()
+        open(speed)
         {
             if (this.autoClose)
                 this.block.parent.closeAll();
 
-            this.block.element.animate({ height: this.block.maxHeight }, this.speed, this.func );
+            this.block.element.animate({ height: this.block.maxHeight }, speed !== undefined ? speed : this.speed, this.func );
             this.element.addClass("opened");
             this.collapsed = false;
         }
@@ -86,12 +86,14 @@
 
             this.maxHeight = this.element.outerHeight();
 
-            if (!settings.opened)
-                this.element.height(0); 
+            this.element.height(0);
 
             this.element.css("overflow", "hidden");
 
             this.button = new Button(settings);
+
+            if (settings.opened)
+                this.button.open(0);
         }
     }
 
