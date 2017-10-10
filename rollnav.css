@@ -1,0 +1,56 @@
+.rollnav {
+    position: relative;
+}
+.rollnav .content-wrapper {
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+}
+.rollnav .button .label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 100%;
+    margin: auto;
+    -webkit-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+}
+.rollnav .button.opened .label {
+    transform: rotate(-90deg);
+}
+.rollnav .button .label:after {
+    transform: rotate(45deg);
+    top: 4px;
+}
+.rollnav .button .label:before {
+    transform: rotate(-45deg);
+    top: -4px;
+}
+.rollnav, .rollnav * {
+    box-sizing: border-box;
+}
+.rollnav .button .label:after,
+.rollnav .button .label:before {
+    content: "";
+    background: #505050;
+    width: 7px;
+    height: 2px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+.rollnav .button {
+    background: #efefef;
+    padding: 10px 25px;
+    display: inline-block;
+    width: 100%;
+    color: #272727;
+    position: relative;
+    font-family: Arial;
+    font-size: 14px;
+    margin-bottom: 1px;
+    cursor: pointer;
+}
