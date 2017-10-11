@@ -68,14 +68,15 @@
 
         init (options)
         {
-            var settings = {
-                block : this,
-                speed : options.speed || options.element.attr("data-speed"),
-                opened : options.opened || options.element.attr("data-opened"),
-                class : options.buttonClass || options.element.attr("data-class"),
-                title : options.element.attr("data-title"),
-                autoClose : options.autoClose || options.element.attr("data-auto-close")
-            }
+            var self = this,
+                settings = {
+                    block : this,
+                    speed : options.speed || options.element.attr("data-speed"),
+                    opened : options.opened || options.element.attr("data-opened"),
+                    class : options.buttonClass || options.element.attr("data-class"),
+                    title : options.element.attr("data-title"),
+                    autoClose : options.autoClose || options.element.attr("data-auto-close")
+                }
 
             this.element.addClass("content-wrapper");
 
@@ -86,17 +87,17 @@
             this.element.append(options.element);
             wrapper.append(this.element);
 
-
-            this.maxHeight = this.element.outerHeight();
-
-            this.element.height(0);
-
             this.element.css("overflow", "hidden");
 
             this.button = new Button(settings);
 
-            if (settings.opened)
-                this.button.open(0);
+            this.element.ready(function(e){
+                self.maxHeight = self.element.outerHeight();
+                self.element.height(0);
+                if (settings.opened)
+                    self.button.open(0);
+            });
+            
         }
     }
 
