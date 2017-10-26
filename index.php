@@ -10,7 +10,7 @@
 </head>
 <body style="width: 500px; margin: auto; padding: 10px;">
 	<div class="rollnav" data-auto-close="true">
-		<div data-title="tab 1" data-opened="true">
+		<div data-title="tab 1" data-opened="true" data-delay="1000">
 			<p>asdadsadsadad</p>
 			<p>asdadsadsadad</p>
 			<p>asdadsadsadad</p>

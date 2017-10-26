@@ -12,6 +12,7 @@
             this.block = options.block;
             this.title = options.title || "button";
             this.autoClose = options.autoClose || false;
+            this.delay = options.delay || 0;
             this.init(options);
         }
 
@@ -31,7 +32,6 @@
 
         close()
         {
-            var self = this;
             this.block.element.animate({ height: this.block.minHeight}, this.speed, this.func);
             this.element.removeClass("opened");
             this.collapsed = true;
@@ -39,12 +39,19 @@
 
         open(speed)
         {
-            if (this.autoClose)
-                this.block.parent.closeAll();
+            var self = this,
+                delay = speed !== undefined ? 0 : self.delay;
 
-            this.block.element.animate({ height: this.block.maxHeight }, speed !== undefined ? speed : this.speed, this.func );
-            this.element.addClass("opened");
-            this.collapsed = false;
+            setTimeout(function(){
+
+                if (self.autoClose)
+                    self.block.parent.closeAll();
+
+                self.block.element.animate({ height: self.block.maxHeight }, speed !== undefined ? speed : self.speed, self.func );
+                self.element.addClass("opened");
+                self.collapsed = false;
+
+            }, delay);
         }
 
         toogle()
@@ -75,7 +82,8 @@
                     opened : options.opened || options.element.attr("data-opened"),
                     class : options.buttonClass || options.element.attr("data-class"),
                     title : options.element.attr("data-title"),
-                    autoClose : options.autoClose || options.element.attr("data-auto-close")
+                    autoClose : options.autoClose || options.element.attr("data-auto-close"),
+                    delay : options.delay || options.element.attr("data-delay")
                 }
 
             this.element.addClass("content-wrapper");
